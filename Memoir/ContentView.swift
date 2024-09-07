@@ -81,7 +81,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct MemoirMonthView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State var memoirMonth: MemoirMonth
+    @ObservedObject var memoirMonth: MemoirMonth
 
     var body: some View {
         List {

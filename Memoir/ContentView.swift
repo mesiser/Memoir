@@ -7,27 +7,26 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var items: [Memoir]
-    @State private var currentText: String = ""
+struct DateConverter {
     
-    var dateFormatter: DateFormatter = {
+    static var month: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter
     }()
+}
+
+struct ContentView: View {
+    @State var items: [Memoir]
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        TextEditor(text: $currentText)
-                            .foregroundStyle(.primary)
-                            .padding(.horizontal)
-                            .navigationTitle(dateFormatter.string(from: Date()))
+                        MemoirMonthView(memoir: item)
                     } label: {
-                        Text(dateFormatter.string(from: item.timestamp))
+                        Text(DateConverter.month.string(from: item.timestamp))
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -63,4 +62,16 @@ struct ContentView: View {
 
 #Preview {
     ContentView(items: [])
+}
+
+struct MemoirMonthView: View {
+    @State private var currentText: String = ""
+    let memoir: Memoir
+    
+    var body: some View {
+        TextEditor(text: $currentText)
+            .foregroundStyle(.primary)
+            .padding(.horizontal)
+            .navigationTitle(DateConverter.month.string(from: memoir.timestamp))
+    }
 }

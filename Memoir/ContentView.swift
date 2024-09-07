@@ -10,6 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @State var items: [Memoir]
     @State private var currentText: String = ""
+    
+    var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter
+    }()
 
     var body: some View {
         NavigationView {
@@ -17,11 +23,11 @@ struct ContentView: View {
                 ForEach(items) { item in
                     NavigationLink {
                         TextEditor(text: $currentText)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.primary)
                             .padding(.horizontal)
-                            .navigationTitle(Date().formatted(date: .long, time: .omitted))
+                            .navigationTitle(dateFormatter.string(from: Date()))
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .long, time: .none))
+                        Text(dateFormatter.string(from: item.timestamp))
                     }
                 }
                 .onDelete(perform: deleteItems)

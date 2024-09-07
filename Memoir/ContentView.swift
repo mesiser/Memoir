@@ -5,21 +5,25 @@
 //  Created by Vadim Shalugin on 07.09.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @State private var currentText: String = ""
 
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        TextEditor(text: $currentText)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                            .navigationTitle(Date().formatted(date: .long, time: .omitted))
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text(item.timestamp, format: Date.FormatStyle(date: .long, time: .none))
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -41,7 +45,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Item(timestamp: Date(), title: "", text: "")
             modelContext.insert(newItem)
         }
     }

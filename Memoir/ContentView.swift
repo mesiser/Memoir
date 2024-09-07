@@ -22,16 +22,17 @@ enum DateConverter {
 }
 
 struct ContentView: View {
-    @State var items: [MemoirMonth]
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) var months: FetchedResults<MemoirMonth>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(months) { month in
                     NavigationLink {
-                        MemoirMonthView(memoirMonth: item)
+                        MemoirMonthView(memoirMonth: month)
                     } label: {
-                        Text(DateConverter.month.string(from: item.date))
+                        Text(DateConverter.month.string(from: month.date))
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -51,22 +52,29 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = MemoirMonth(date: Date(), memoirs: [])
-            items.append(newItem)
+            let newItem = MemoirMonth(context: viewContext)
+            newItem.date = Date()
+            newItem.id = UUID()
+            try? viewContext.save()
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                items.remove(at: index)
-            }
-        }
+//        withAnimation {
+//            for index in offsets {
+//                items.remove(at: index)
+//            }
+//        }
     }
 }
 
-#Preview {
-    ContentView(items: [])
+struct ContentView_Previews: PreviewProvider {
+    static var dataController = DataController()
+
+    static var previews: some View {
+        ContentView()
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+    }
 }
 
 struct MemoirMonthView: View {
@@ -74,8 +82,8 @@ struct MemoirMonthView: View {
 
     var body: some View {
         List {
-            ForEach(memoirMonth.memoirs) { memoir in
-                MemoirView(memoir: memoir)
+            ForEach(memoirMonth.memoirArray) { _ in
+                MemoirView()
             }
         }
         .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
@@ -92,32 +100,32 @@ struct MemoirMonthView: View {
     }
 
     private func addItem() {
-        withAnimation {
-            let newItem = Memoir(timestamp: Date(), title: "", text: "")
-            memoirMonth.memoirs.append(newItem)
-        }
+//        withAnimation {
+//            let newItem = Memoir(timestamp: Date(), title: "", text: "")
+//            memoirMonth.memoirs.append(newItem)
+//        }
     }
 
     private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                memoirMonth.memoirs.remove(at: index)
-            }
-        }
+//        withAnimation {
+//            for index in offsets {
+//                memoirMonth.memoirs.remove(at: index)
+//            }
+//        }
     }
 }
 
 struct MemoirView: View {
     @State private var currentText: String = ""
-    @State var memoir: Memoir
-    
+//    @State var memoir: Memoir
+
     var body: some View {
         Section(content: {
             TextEditor(text: $currentText)
                 .foregroundStyle(.primary)
                 .padding(0)
         }, header: {
-            Text(DateConverter.day.string(from: memoir.timestamp))
+//            Text(DateConverter.day.string(from: memoir.timestamp))
         })
     }
 }

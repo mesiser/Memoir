@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1079F42C8CCB78002ACB99 /* Memoirs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD1079F22C8CCB78002ACB99 /* Memoirs.xcdatamodeld */; };
+		DD1079F62C8CCBEB002ACB99 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1079F52C8CCBEB002ACB99 /* DataController.swift */; };
+		DD107A032C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1079FF2C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift */; };
+		DD107A042C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A002C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift */; };
+		DD107A052C8CD742002ACB99 /* Memoir+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A012C8CD742002ACB99 /* Memoir+CoreDataClass.swift */; };
+		DD107A062C8CD742002ACB99 /* Memoir+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */; };
 		DD2B15002C8C3A25005F72B8 /* MemoirApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */; };
 		DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15012C8C3A25005F72B8 /* ContentView.swift */; };
 		DD2B15042C8C3A25005F72B8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15032C8C3A25005F72B8 /* Item.swift */; };
@@ -15,6 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD1079F32C8CCB78002ACB99 /* Memoirs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memoirs.xcdatamodel; sourceTree = "<group>"; };
+		DD1079F52C8CCBEB002ACB99 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		DD1079FF2C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MemoirMonth+CoreDataClass.swift"; path = "Memoir/MemoirMonth+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD107A002C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MemoirMonth+CoreDataProperties.swift"; path = "Memoir/MemoirMonth+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD107A012C8CD742002ACB99 /* Memoir+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memoir+CoreDataClass.swift"; path = "Memoir/Memoir+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memoir+CoreDataProperties.swift"; path = "Memoir/Memoir+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD2B14FC2C8C3A25005F72B8 /* Memoir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memoir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirApp.swift; sourceTree = "<group>"; };
 		DD2B15012C8C3A25005F72B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +49,10 @@
 		DD2B14F32C8C3A25005F72B8 = {
 			isa = PBXGroup;
 			children = (
+				DD1079FF2C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift */,
+				DD107A002C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift */,
+				DD107A012C8CD742002ACB99 /* Memoir+CoreDataClass.swift */,
+				DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */,
 				DD2B14FE2C8C3A25005F72B8 /* Memoir */,
 				DD2B14FD2C8C3A25005F72B8 /* Products */,
 			);
@@ -55,9 +71,11 @@
 			children = (
 				DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */,
 				DD2B15012C8C3A25005F72B8 /* ContentView.swift */,
+				DD1079F22C8CCB78002ACB99 /* Memoirs.xcdatamodeld */,
 				DD2B15032C8C3A25005F72B8 /* Item.swift */,
 				DD2B15052C8C3A26005F72B8 /* Assets.xcassets */,
 				DD2B15072C8C3A26005F72B8 /* Preview Content */,
+				DD1079F52C8CCBEB002ACB99 /* DataController.swift */,
 			);
 			path = Memoir;
 			sourceTree = "<group>";
@@ -140,8 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1079F62C8CCBEB002ACB99 /* DataController.swift in Sources */,
+				DD1079F42C8CCB78002ACB99 /* Memoirs.xcdatamodeld in Sources */,
 				DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */,
 				DD2B15042C8C3A25005F72B8 /* Item.swift in Sources */,
+				DD107A032C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift in Sources */,
+				DD107A042C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift in Sources */,
+				DD107A052C8CD742002ACB99 /* Memoir+CoreDataClass.swift in Sources */,
+				DD107A062C8CD742002ACB99 /* Memoir+CoreDataProperties.swift in Sources */,
 				DD2B15002C8C3A25005F72B8 /* MemoirApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +374,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DD1079F22C8CCB78002ACB99 /* Memoirs.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD1079F32C8CCB78002ACB99 /* Memoirs.xcdatamodel */,
+			);
+			currentVersion = DD1079F32C8CCB78002ACB99 /* Memoirs.xcdatamodel */;
+			name = Memoirs.xcdatamodeld;
+			path = /Users/vadim/Documents/developers/Memoir/Memoir/Memoirs.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DD2B14F42C8C3A25005F72B8 /* Project object */;
 }

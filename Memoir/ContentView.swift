@@ -60,11 +60,13 @@ struct ContentView: View {
     }
 
     private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            for index in offsets {
-//                items.remove(at: index)
-//            }
-//        }
+        withAnimation {
+            for index in offsets {
+                let month = months[index]
+                viewContext.delete(month)
+                try? viewContext.save()
+            }
+        }
     }
 }
 

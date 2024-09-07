@@ -15,7 +15,6 @@
 		DD107A062C8CD742002ACB99 /* Memoir+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */; };
 		DD2B15002C8C3A25005F72B8 /* MemoirApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */; };
 		DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15012C8C3A25005F72B8 /* ContentView.swift */; };
-		DD2B15042C8C3A25005F72B8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15032C8C3A25005F72B8 /* Item.swift */; };
 		DD2B15062C8C3A26005F72B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2B15052C8C3A26005F72B8 /* Assets.xcassets */; };
 		DD2B15092C8C3A26005F72B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2B15082C8C3A26005F72B8 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -30,7 +29,6 @@
 		DD2B14FC2C8C3A25005F72B8 /* Memoir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memoir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirApp.swift; sourceTree = "<group>"; };
 		DD2B15012C8C3A25005F72B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DD2B15032C8C3A25005F72B8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DD2B15052C8C3A26005F72B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD2B15082C8C3A26005F72B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +70,6 @@
 				DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */,
 				DD2B15012C8C3A25005F72B8 /* ContentView.swift */,
 				DD1079F22C8CCB78002ACB99 /* Memoirs.xcdatamodeld */,
-				DD2B15032C8C3A25005F72B8 /* Item.swift */,
 				DD2B15052C8C3A26005F72B8 /* Assets.xcassets */,
 				DD2B15072C8C3A26005F72B8 /* Preview Content */,
 				DD1079F52C8CCBEB002ACB99 /* DataController.swift */,
@@ -161,7 +158,6 @@
 				DD1079F62C8CCBEB002ACB99 /* DataController.swift in Sources */,
 				DD1079F42C8CCB78002ACB99 /* Memoirs.xcdatamodeld in Sources */,
 				DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */,
-				DD2B15042C8C3A25005F72B8 /* Item.swift in Sources */,
 				DD107A032C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift in Sources */,
 				DD107A042C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift in Sources */,
 				DD107A052C8CD742002ACB99 /* Memoir+CoreDataClass.swift in Sources */,

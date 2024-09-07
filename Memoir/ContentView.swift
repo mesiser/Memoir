@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct DateConverter {
-    
+enum DateConverter {
     static var month: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
@@ -17,16 +16,16 @@ struct DateConverter {
 }
 
 struct ContentView: View {
-    @State var items: [Memoir]
+    @State var items: [MemoirMonth]
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        MemoirMonthView(memoir: item)
+                        MemoirMonthView(memoirMonth: item)
                     } label: {
-                        Text(DateConverter.month.string(from: item.timestamp))
+                        Text(DateConverter.month.string(from: item.date))
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -46,7 +45,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Memoir(timestamp: Date(), title: "", text: "")
+            let newItem = MemoirMonth(date: Date(), memoirs: [])
             items.append(newItem)
         }
     }
@@ -66,12 +65,41 @@ struct ContentView: View {
 
 struct MemoirMonthView: View {
     @State private var currentText: String = ""
-    let memoir: Memoir
-    
+    @State var memoirMonth: MemoirMonth
+
     var body: some View {
-        TextEditor(text: $currentText)
-            .foregroundStyle(.primary)
-            .padding(.horizontal)
-            .navigationTitle(DateConverter.month.string(from: memoir.timestamp))
+        List {
+            ForEach(memoirMonth.memoirs) { _ in
+                TextEditor(text: $currentText)
+                    .foregroundStyle(.primary)
+                    .padding(0)
+            }
+        }
+        .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            ToolbarItem {
+                Button(action: addItem) {
+                    Label("Add Item", systemImage: "plus")
+                }
+            }
+        }
+    }
+
+    private func addItem() {
+        withAnimation {
+            let newItem = Memoir(timestamp: Date(), title: "", text: "")
+            memoirMonth.memoirs.append(newItem)
+        }
+    }
+
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                memoirMonth.memoirs.remove(at: index)
+            }
+        }
     }
 }

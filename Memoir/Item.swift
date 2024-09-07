@@ -13,3 +13,9 @@ struct Memoir: Identifiable {
     var title: String
     var text: String
 }
+
+struct MemoirMonth: Identifiable {
+    var id = UUID()
+    var date: Date
+    var memoirs: [Memoir]
+}

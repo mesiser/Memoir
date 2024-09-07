@@ -80,13 +80,14 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct MemoirMonthView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @State var memoirMonth: MemoirMonth
 
     var body: some View {
         List {
             ForEach(memoirMonth.memoirArray) { _ in
                 MemoirView()
-            }
+            }.onDelete(perform: deleteItems)
         }
         .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
         .toolbar {
@@ -102,18 +103,24 @@ struct MemoirMonthView: View {
     }
 
     private func addItem() {
-//        withAnimation {
-//            let newItem = Memoir(timestamp: Date(), title: "", text: "")
-//            memoirMonth.memoirs.append(newItem)
-//        }
+        withAnimation {
+            let newItem = Memoir(context: viewContext)
+            newItem.timestamp = Date()
+            newItem.id = UUID()
+            newItem.month = memoirMonth
+            memoirMonth.addToMemoirs(newItem)
+            try? viewContext.save()
+        }
     }
 
     private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            for index in offsets {
-//                memoirMonth.memoirs.remove(at: index)
-//            }
-//        }
+        withAnimation {
+            for index in offsets {
+                let memoir = memoirMonth.memoirArray[index]
+                memoirMonth.removeFromMemoirs(memoir)
+                try? viewContext.save()
+            }
+        }
     }
 }
 

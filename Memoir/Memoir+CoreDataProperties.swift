@@ -20,6 +20,7 @@ extension Memoir {
     @NSManaged public var timestamp: Date
     @NSManaged public var title: String?
     @NSManaged public var text: String?
+    @NSManaged public var month: MemoirMonth
 
 }
 

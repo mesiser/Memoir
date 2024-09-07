@@ -5,16 +5,14 @@
 //  Created by Vadim Shalugin on 07.09.2024.
 //
 
-import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State var items: [Memoir]
     @State private var currentText: String = ""
 
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
@@ -38,28 +36,25 @@ struct ContentView: View {
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
         }
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date(), title: "", text: "")
-            modelContext.insert(newItem)
+            let newItem = Memoir(timestamp: Date(), title: "", text: "")
+            items.append(newItem)
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                items.remove(at: index)
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    ContentView(items: [])
 }

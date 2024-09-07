@@ -13,6 +13,12 @@ enum DateConverter {
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter
     }()
+
+    static var day: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        return dateFormatter
+    }()
 }
 
 struct ContentView: View {
@@ -64,15 +70,12 @@ struct ContentView: View {
 }
 
 struct MemoirMonthView: View {
-    @State private var currentText: String = ""
     @State var memoirMonth: MemoirMonth
 
     var body: some View {
         List {
-            ForEach(memoirMonth.memoirs) { _ in
-                TextEditor(text: $currentText)
-                    .foregroundStyle(.primary)
-                    .padding(0)
+            ForEach(memoirMonth.memoirs) { memoir in
+                MemoirView(memoir: memoir)
             }
         }
         .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
@@ -101,5 +104,20 @@ struct MemoirMonthView: View {
                 memoirMonth.memoirs.remove(at: index)
             }
         }
+    }
+}
+
+struct MemoirView: View {
+    @State private var currentText: String = ""
+    @State var memoir: Memoir
+    
+    var body: some View {
+        Section(content: {
+            TextEditor(text: $currentText)
+                .foregroundStyle(.primary)
+                .padding(0)
+        }, header: {
+            Text(DateConverter.day.string(from: memoir.timestamp))
+        })
     }
 }

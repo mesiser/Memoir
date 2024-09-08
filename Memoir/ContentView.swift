@@ -126,12 +126,22 @@ struct MemoirMonthView: View {
 }
 
 struct MemoirView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @State private var currentText: String = ""
     @State var memoir: Memoir
+
+    init(memoir: Memoir) {
+        self.memoir = memoir
+        self._currentText = State(wrappedValue: memoir.text ?? "")
+    }
 
     var body: some View {
         Section(content: {
             TextEditor(text: $currentText)
+                .onChange(of: currentText) { value in
+                    memoir.text = value
+                    try? viewContext.save()
+                }
                 .foregroundStyle(.primary)
                 .padding(0)
                 .listRowSeparator(.hidden)

@@ -79,74 +79,9 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct MemoirMonthView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var memoirMonth: MemoirMonth
-
-    var body: some View {
-        List {
-            ForEach(memoirMonth.memoirArray) { memoir in
-                MemoirView(memoir: memoir)
-            }.onDelete(perform: deleteItems)
-        }
-        .listStyle(.plain)
-        .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-            ToolbarItem {
-                Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
-                }
-            }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Memoir(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.id = UUID()
-            newItem.month = memoirMonth
-            memoirMonth.addToMemoirs(newItem)
-            try? viewContext.save()
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                let memoir = memoirMonth.memoirArray[index]
-                memoirMonth.removeFromMemoirs(memoir)
-                try? viewContext.save()
-            }
-        }
-    }
-}
-
-struct MemoirView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @State private var currentText: String = ""
-    @State var memoir: Memoir
-
-    init(memoir: Memoir) {
-        self.memoir = memoir
-        self._currentText = State(wrappedValue: memoir.text ?? "")
-    }
-
-    var body: some View {
-        Section(content: {
-            TextEditor(text: $currentText)
-                .onChange(of: currentText) { value in
-                    memoir.text = value
-                    try? viewContext.save()
-                }
-                .foregroundStyle(.primary)
-                .padding(0)
-                .listRowSeparator(.hidden)
-        }, header: {
-            Text(DateConverter.day.string(from: memoir.timestamp))
-        })
+struct ViewHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat { 0 }
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = value + nextValue()
     }
 }

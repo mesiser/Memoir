@@ -17,6 +17,8 @@
 		DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15012C8C3A25005F72B8 /* ContentView.swift */; };
 		DD2B15062C8C3A26005F72B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2B15052C8C3A26005F72B8 /* Assets.xcassets */; };
 		DD2B15092C8C3A26005F72B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2B15082C8C3A26005F72B8 /* Preview Assets.xcassets */; };
+		DDD23DCA2C8DBA93001B3E3F /* MemoirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD23DC92C8DBA93001B3E3F /* MemoirView.swift */; };
+		DDD23DD02C8DBB06001B3E3F /* MemoirMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD23DCF2C8DBB06001B3E3F /* MemoirMonthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		DD2B15012C8C3A25005F72B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DD2B15052C8C3A26005F72B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD2B15082C8C3A26005F72B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DDD23DC92C8DBA93001B3E3F /* MemoirView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoirView.swift; sourceTree = "<group>"; };
+		DDD23DCF2C8DBB06001B3E3F /* MemoirMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirMonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				DD2B15052C8C3A26005F72B8 /* Assets.xcassets */,
 				DD2B15072C8C3A26005F72B8 /* Preview Content */,
 				DD1079F52C8CCBEB002ACB99 /* DataController.swift */,
+				DDD23DC92C8DBA93001B3E3F /* MemoirView.swift */,
+				DDD23DCF2C8DBB06001B3E3F /* MemoirMonthView.swift */,
 			);
 			path = Memoir;
 			sourceTree = "<group>";
@@ -156,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1079F62C8CCBEB002ACB99 /* DataController.swift in Sources */,
+				DDD23DCA2C8DBA93001B3E3F /* MemoirView.swift in Sources */,
+				DDD23DD02C8DBB06001B3E3F /* MemoirMonthView.swift in Sources */,
 				DD1079F42C8CCB78002ACB99 /* Memoirs.xcdatamodeld in Sources */,
 				DD2B15022C8C3A25005F72B8 /* ContentView.swift in Sources */,
 				DD107A032C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift in Sources */,

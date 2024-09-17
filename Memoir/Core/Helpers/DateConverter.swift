@@ -16,7 +16,7 @@ enum DateConverter {
 
     static var day: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM"
+        dateFormatter.dateFormat = "d.MM"
         return dateFormatter
     }()
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemoirView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var currentText: String = ""
+    @State private var currentText: String = "342523452433245243524325423"
     @State var memoir: Memoir
     @State private var height = CGFloat.zero
 
@@ -19,29 +19,27 @@ struct MemoirView: View {
     }
 
     var body: some View {
-        Section(content: {
+        VStack(alignment: .leading) {
+            Text(DateConverter.day.string(from: memoir.timestamp))
+                .font(.headline) // Optional, for styling the header
+            
             ZStack(alignment: .leading) {
-                // Hidden Text to measure the height
                 Text(currentText).foregroundColor(.clear).padding(6)
                     .background(GeometryReader { geometry in
                         Color.clear.preference(key: ViewHeightKey.self, value: geometry.frame(in: .local).size.height)
                     })
-
-                // Actual TextEditor
+                
                 TextEditor(text: $currentText)
                     .onChange(of: currentText) { value in
                         memoir.text = value
                         saveMemoir()
                     }
                     .padding(.horizontal, -4)
-                    .frame(minHeight: height)
+                    .frame(minHeight: height > 0 ? height : 100)
                     .foregroundStyle(.primary)
-                    .listRowSeparator(.hidden)
             }
             .onPreferenceChange(ViewHeightKey.self) { height = $0 }
-        }, header: {
-            Text(DateConverter.day.string(from: memoir.timestamp))
-        })
+        }
     }
 
     private func saveMemoir() {

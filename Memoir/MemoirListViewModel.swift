@@ -12,7 +12,7 @@ class MemoirListViewModel: ObservableObject {
     private var viewContext: NSManagedObjectContext
     @Published var months: [MemoirMonth] = []
     
-    init(context: NSManagedObjectContext) {C
+    init(context: NSManagedObjectContext) {
         self.viewContext = context
         fetchMonths()
     }

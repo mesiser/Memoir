@@ -13,8 +13,9 @@ struct MemoirApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+            let context = dataController.container.viewContext
+            ContentView(context: context)
+                .environment(\.managedObjectContext, context)
         }
     }
 }

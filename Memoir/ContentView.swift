@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 enum DateConverter {
     static var month: DateFormatter = {
@@ -23,49 +24,37 @@ enum DateConverter {
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) var months: FetchedResults<MemoirMonth>
+    @ObservedObject private var viewModel: ContentViewModel
+    
+    init(context: NSManagedObjectContext) {
+        self.viewModel = ContentViewModel(context: context)
+    }
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(months) { month in
+                ForEach(viewModel.months, id: \.self) { month in
                     NavigationLink {
                         MemoirMonthView(memoirMonth: month)
                     } label: {
                         Text(DateConverter.month.string(from: month.date))
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: viewModel.deleteItems)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: viewModel.addItem) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = MemoirMonth(context: viewContext)
-            newItem.date = Date()
-            newItem.id = UUID()
-            try? viewContext.save()
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                let month = months[index]
-                viewContext.delete(month)
-                try? viewContext.save()
-            }
+        .onAppear {
+            viewModel.fetchMonths()  // Start data fetch after assigning the context
         }
     }
 }
@@ -74,8 +63,8 @@ struct ContentView_Previews: PreviewProvider {
     static var dataController = DataController()
 
     static var previews: some View {
-        ContentView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
+        let viewContext = dataController.container.viewContext
+        ContentView(context: viewContext)
     }
 }
 

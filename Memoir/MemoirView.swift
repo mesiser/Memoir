@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemoirView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var currentText: String = "342523452433245243524325423"
+    @State private var currentText: String = ""
     @State var memoir: Memoir
     @State private var height = CGFloat.zero
 
@@ -22,13 +22,13 @@ struct MemoirView: View {
         VStack(alignment: .leading) {
             Text(DateConverter.day.string(from: memoir.timestamp))
                 .font(.headline) // Optional, for styling the header
-            
+
             ZStack(alignment: .leading) {
                 Text(currentText).foregroundColor(.clear).padding(6)
                     .background(GeometryReader { geometry in
                         Color.clear.preference(key: ViewHeightKey.self, value: geometry.frame(in: .local).size.height)
                     })
-                
+
                 TextEditor(text: $currentText)
                     .onChange(of: currentText) { value in
                         memoir.text = value

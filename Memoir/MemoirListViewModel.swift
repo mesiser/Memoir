@@ -8,11 +8,11 @@
 import SwiftUI
 import CoreData
 
-class ContentViewModel: ObservableObject {
+class MemoirListViewModel: ObservableObject {
     private var viewContext: NSManagedObjectContext
     @Published var months: [MemoirMonth] = []
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext) {C
         self.viewContext = context
         fetchMonths()
     }

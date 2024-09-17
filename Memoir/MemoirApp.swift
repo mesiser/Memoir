@@ -14,7 +14,7 @@ struct MemoirApp: App {
     var body: some Scene {
         WindowGroup {
             let context = dataController.container.viewContext
-            ContentView(context: context)
+            MemoirListView(context: context)
                 .environment(\.managedObjectContext, context)
         }
     }

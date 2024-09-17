@@ -21,14 +21,17 @@ struct MemoirView: View {
     var body: some View {
         Section(content: {
             ZStack(alignment: .leading) {
+                // Hidden Text to measure the height
                 Text(currentText).foregroundColor(.clear).padding(6)
-                    .background(GeometryReader {
-                        Color.clear.preference(key: ViewHeightKey.self, value: $0.frame(in: .local).size.height)
+                    .background(GeometryReader { geometry in
+                        Color.clear.preference(key: ViewHeightKey.self, value: geometry.frame(in: .local).size.height)
                     })
+
+                // Actual TextEditor
                 TextEditor(text: $currentText)
                     .onChange(of: currentText) { value in
                         memoir.text = value
-                        try? viewContext.save()
+                        saveMemoir()
                     }
                     .padding(.horizontal, -4)
                     .frame(minHeight: height)
@@ -40,9 +43,26 @@ struct MemoirView: View {
             Text(DateConverter.day.string(from: memoir.timestamp))
         })
     }
+
+    private func saveMemoir() {
+        do {
+            try viewContext.save()
+        } catch {
+            print("Failed to save Memoir: \(error.localizedDescription)")
+        }
+    }
 }
 
-#Preview {
-    MemoirView(memoir: .init())
-}
+struct MemoirViewPreviews: PreviewProvider {
+    static var dataController = DataController()
 
+    static var previews: some View {
+        let viewContext = dataController.container.viewContext
+        let sampleMemoir = Memoir(context: viewContext)
+        sampleMemoir.text = "Sample Memoir Text"
+        sampleMemoir.timestamp = Date()
+
+        return MemoirView(memoir: sampleMemoir)
+            .environment(\.managedObjectContext, viewContext)
+    }
+}

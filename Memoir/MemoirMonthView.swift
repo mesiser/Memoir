@@ -52,7 +52,16 @@ struct MemoirMonthView: View {
         }
     }
 }
+struct MemoirMonthViewPreviews: PreviewProvider {
+    static var dataController = DataController()
 
-#Preview {
-    MemoirMonthView(memoirMonth: .init())
+    static var previews: some View {
+        let viewContext = dataController.container.viewContext
+        let sampleMemoirMonth = MemoirMonth(context: viewContext)
+        sampleMemoirMonth.date = Date()
+        sampleMemoirMonth.id = UUID()
+        
+        return MemoirMonthView(memoirMonth: sampleMemoirMonth)
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+    }
 }

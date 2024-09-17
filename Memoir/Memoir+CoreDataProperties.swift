@@ -6,24 +6,19 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-
-extension Memoir {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Memoir> {
+public extension Memoir {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<Memoir> {
         return NSFetchRequest<Memoir>(entityName: "Memoir")
     }
 
-    @NSManaged public var id: UUID
-    @NSManaged public var timestamp: Date
-    @NSManaged public var title: String?
-    @NSManaged public var text: String?
-    @NSManaged public var month: MemoirMonth
-
+    @NSManaged var id: UUID
+    @NSManaged var timestamp: Date
+    @NSManaged var title: String?
+    @NSManaged var text: String?
+    @NSManaged var month: MemoirMonth
 }
 
-extension Memoir : Identifiable {
-
-}
+extension Memoir: Identifiable {}

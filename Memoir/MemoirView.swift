@@ -13,6 +13,9 @@ struct MemoirView: View {
     @State var memoir: Memoir
     @State private var height = CGFloat.zero
     @FocusState var isInputActive: Bool
+    @State private var fontSize: Float = 10
+    @State private var bold: Bool = false
+    @State private var italic: Bool = false
 
     init(memoir: Memoir) {
         self.memoir = memoir
@@ -42,8 +45,10 @@ struct MemoirView: View {
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Spacer()
-                            Button("Done") {
+                            Button {
                                 isInputActive = false
+                            } label: {
+                                Image(systemName: "keyboard.chevron.compact.down")
                             }
                         }
                     }

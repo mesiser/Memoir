@@ -54,7 +54,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-// Done button to hide keyboard
+// Crash on deleting month
 // Deactivate scroll on TextEditor
 // Scroll to bottom on opening month
 // Add new day on swipe down

@@ -11,14 +11,12 @@ struct MemoirView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var currentText: String = ""
     @State var memoir: Memoir
+    @FocusState.Binding var isInputActive: Bool
     @State private var height = CGFloat.zero
-    @FocusState var isInputActive: Bool
-    @State private var fontSize: Float = 10
-    @State private var bold: Bool = false
-    @State private var italic: Bool = false
 
-    init(memoir: Memoir) {
+    init(memoir: Memoir, isInputActive: FocusState<Bool>.Binding) {
         self.memoir = memoir
+        self._isInputActive = isInputActive
         self._currentText = State(wrappedValue: memoir.text ?? "")
     }
 
@@ -42,16 +40,6 @@ struct MemoirView: View {
                     .frame(minHeight: height > 0 ? height : 100)
                     .foregroundStyle(.primary)
                     .focused($isInputActive)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button {
-                                isInputActive = false
-                            } label: {
-                                Image(systemName: "keyboard.chevron.compact.down")
-                            }
-                        }
-                    }
             }
             .onPreferenceChange(ViewHeightKey.self) { height = $0 }
         }
@@ -68,6 +56,7 @@ struct MemoirView: View {
 
 struct MemoirViewPreviews: PreviewProvider {
     static var dataController = DataController()
+    @FocusState static private var isInputActive: Bool
 
     static var previews: some View {
         let viewContext = dataController.container.viewContext
@@ -75,7 +64,7 @@ struct MemoirViewPreviews: PreviewProvider {
         sampleMemoir.text = "Sample Memoir Text"
         sampleMemoir.timestamp = Date()
 
-        return MemoirView(memoir: sampleMemoir)
+        return MemoirView(memoir: sampleMemoir, isInputActive: $isInputActive)
             .environment(\.managedObjectContext, viewContext)
     }
 }

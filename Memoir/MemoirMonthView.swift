@@ -10,11 +10,12 @@ import SwiftUI
 struct MemoirMonthView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var memoirMonth: MemoirMonth
+    @FocusState var isInputActive: Bool
 
     var body: some View {
         List {
             ForEach(memoirMonth.memoirArray) { memoir in
-                MemoirView(memoir: memoir)
+                MemoirView(memoir: memoir, isInputActive: $isInputActive)
             }.onDelete(perform: deleteItems)
         }
         .listStyle(.plain)
@@ -26,6 +27,15 @@ struct MemoirMonthView: View {
             ToolbarItem {
                 Button(action: addItem) {
                     Label("Add Item", systemImage: "plus")
+                }
+            }
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    print(isInputActive)
+                    isInputActive = false
+                } label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
                 }
             }
         }
@@ -52,16 +62,18 @@ struct MemoirMonthView: View {
         }
     }
 }
+
 struct MemoirMonthViewPreviews: PreviewProvider {
     static var dataController = DataController()
+    @FocusState static private var isInputActive: Bool
 
     static var previews: some View {
         let viewContext = dataController.container.viewContext
         let sampleMemoirMonth = MemoirMonth(context: viewContext)
         sampleMemoirMonth.date = Date()
         sampleMemoirMonth.id = UUID()
-        
-        return MemoirMonthView(memoirMonth: sampleMemoirMonth)
+
+        return MemoirMonthView(memoirMonth: sampleMemoirMonth, isInputActive: _isInputActive)
             .environment(\.managedObjectContext, dataController.container.viewContext)
     }
 }

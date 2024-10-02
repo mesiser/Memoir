@@ -56,9 +56,10 @@ struct MemoirMonthView: View {
         withAnimation {
             for index in offsets {
                 let memoir = memoirMonth.memoirArray[index]
+                viewContext.delete(memoir)
                 memoirMonth.removeFromMemoirs(memoir)
-                try? viewContext.save()
             }
+            try? viewContext.save()
         }
     }
 }

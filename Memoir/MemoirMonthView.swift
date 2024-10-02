@@ -15,7 +15,7 @@ struct MemoirMonthView: View {
     var body: some View {
         List {
             ForEach(memoirMonth.memoirArray) { memoir in
-                MemoirView(memoir: memoir, isInputActive: $isInputActive)
+                MemoirView(memoir: memoir, viewContext: viewContext, isInputActive: $isInputActive)
             }.onDelete(perform: deleteItems)
         }
         .listStyle(.plain)

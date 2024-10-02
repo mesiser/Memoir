@@ -13,6 +13,7 @@
 		DD107A042C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A002C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift */; };
 		DD107A052C8CD742002ACB99 /* Memoir+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A012C8CD742002ACB99 /* Memoir+CoreDataClass.swift */; };
 		DD107A062C8CD742002ACB99 /* Memoir+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */; };
+		DD23572C2CAD4D0B00BBC41F /* MemoirViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD23572B2CAD4D0B00BBC41F /* MemoirViewModel.swift */; };
 		DD2B15002C8C3A25005F72B8 /* MemoirApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */; };
 		DD2B15022C8C3A25005F72B8 /* MemoirListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B15012C8C3A25005F72B8 /* MemoirListView.swift */; };
 		DD2B15062C8C3A26005F72B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2B15052C8C3A26005F72B8 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		DD107A002C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoirMonth+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD107A012C8CD742002ACB99 /* Memoir+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memoir+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD107A022C8CD742002ACB99 /* Memoir+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memoir+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD23572B2CAD4D0B00BBC41F /* MemoirViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirViewModel.swift; sourceTree = "<group>"; };
 		DD2B14FC2C8C3A25005F72B8 /* Memoir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memoir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2B14FF2C8C3A25005F72B8 /* MemoirApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirApp.swift; sourceTree = "<group>"; };
 		DD2B15012C8C3A25005F72B8 /* MemoirListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoirListView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				DD2B15012C8C3A25005F72B8 /* MemoirListView.swift */,
 				DD8CE6FC2C99FF9E00741267 /* MemoirListViewModel.swift */,
 				DDD23DC92C8DBA93001B3E3F /* MemoirView.swift */,
+				DD23572B2CAD4D0B00BBC41F /* MemoirViewModel.swift */,
 				DDD23DCF2C8DBB06001B3E3F /* MemoirMonthView.swift */,
 				DD2B15072C8C3A26005F72B8 /* Preview Content */,
 				DD2B15052C8C3A26005F72B8 /* Assets.xcassets */,
@@ -208,6 +211,7 @@
 				DDD23DCA2C8DBA93001B3E3F /* MemoirView.swift in Sources */,
 				DDD23DD02C8DBB06001B3E3F /* MemoirMonthView.swift in Sources */,
 				DD1079F42C8CCB78002ACB99 /* Memoirs.xcdatamodeld in Sources */,
+				DD23572C2CAD4D0B00BBC41F /* MemoirViewModel.swift in Sources */,
 				DD2B15022C8C3A25005F72B8 /* MemoirListView.swift in Sources */,
 				DD107A032C8CD742002ACB99 /* MemoirMonth+CoreDataClass.swift in Sources */,
 				DD107A042C8CD742002ACB99 /* MemoirMonth+CoreDataProperties.swift in Sources */,

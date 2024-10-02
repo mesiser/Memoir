@@ -53,3 +53,12 @@ struct ContentView_Previews: PreviewProvider {
         MemoirListView(context: viewContext)
     }
 }
+
+// Done button to hide keyboard
+// Deactivate scroll on TextEditor
+// Scroll to bottom on opening month
+// Add new day on swipe down
+// Add search on swipe up
+// Show images on swipe left
+// Add images/delete memoir on swipe right
+// Show icon if there are images

@@ -12,6 +12,7 @@ struct MemoirView: View {
     @State private var currentText: String = ""
     @State var memoir: Memoir
     @State private var height = CGFloat.zero
+    @FocusState var isInputActive: Bool
 
     init(memoir: Memoir) {
         self.memoir = memoir
@@ -37,6 +38,15 @@ struct MemoirView: View {
                     .padding(.horizontal, -4)
                     .frame(minHeight: height > 0 ? height : 100)
                     .foregroundStyle(.primary)
+                    .focused($isInputActive)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                isInputActive = false
+                            }
+                        }
+                    }
             }
             .onPreferenceChange(ViewHeightKey.self) { height = $0 }
         }

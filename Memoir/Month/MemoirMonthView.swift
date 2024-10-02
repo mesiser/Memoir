@@ -6,26 +6,31 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MemoirMonthView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var memoirMonth: MemoirMonth
-    @FocusState var isInputActive: Bool
+    @StateObject private var viewModel: MemoirMonthViewModel
+    @FocusState private var isInputActive: Bool
+    
+    init(month: MemoirMonth, viewContext: NSManagedObjectContext) {
+        _viewModel = StateObject(wrappedValue: MemoirMonthViewModel(memoirMonth: month, viewContext: viewContext))
+    }
 
     var body: some View {
         List {
-            ForEach(memoirMonth.memoirArray) { memoir in
+            ForEach(viewModel.memoirs) { memoir in
                 MemoirView(memoir: memoir, viewContext: viewContext, isInputActive: $isInputActive)
-            }.onDelete(perform: deleteItems)
+            }.onDelete(perform: viewModel.deleteItems)
         }
         .listStyle(.plain)
-        .navigationTitle(DateConverter.month.string(from: memoirMonth.date))
+        .navigationTitle(DateConverter.month.string(from: viewModel.memoirMonth.date))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
             ToolbarItem {
-                Button(action: addItem) {
+                Button(action: viewModel.addItem) {
                     Label("Add Item", systemImage: "plus")
                 }
             }
@@ -38,28 +43,8 @@ struct MemoirMonthView: View {
                     Image(systemName: "keyboard.chevron.compact.down")
                 }
             }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Memoir(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.id = UUID()
-            newItem.month = memoirMonth
-            memoirMonth.addToMemoirs(newItem)
-            try? viewContext.save()
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                let memoir = memoirMonth.memoirArray[index]
-                viewContext.delete(memoir)
-                memoirMonth.removeFromMemoirs(memoir)
-            }
-            try? viewContext.save()
+        }.onAppear {
+            isInputActive = true
         }
     }
 }
@@ -74,7 +59,7 @@ struct MemoirMonthViewPreviews: PreviewProvider {
         sampleMemoirMonth.date = Date()
         sampleMemoirMonth.id = UUID()
 
-        return MemoirMonthView(memoirMonth: sampleMemoirMonth, isInputActive: _isInputActive)
+        return MemoirMonthView(month: sampleMemoirMonth, viewContext: viewContext)
             .environment(\.managedObjectContext, dataController.container.viewContext)
     }
 }

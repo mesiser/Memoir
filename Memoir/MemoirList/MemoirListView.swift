@@ -21,7 +21,7 @@ struct MemoirListView: View {
             List {
                 ForEach(viewModel.months, id: \.self) { month in
                     NavigationLink {
-                        MemoirMonthView(memoirMonth: month)
+                        MemoirMonthView(month: month, viewContext: viewContext)
                     } label: {
                         Text(DateConverter.month.string(from: month.date))
                     }

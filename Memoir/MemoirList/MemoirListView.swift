@@ -56,6 +56,8 @@ struct ContentView_Previews: PreviewProvider {
 
 // Crash on deleting month
 // Deactivate scroll on TextEditor
+// Doesn't scroll automatically to bottom
+// Save day as header on scroll
 // Scroll to bottom on opening month
 // Add new day on swipe down
 // Add search on swipe up

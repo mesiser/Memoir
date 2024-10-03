@@ -5,8 +5,8 @@
 //  Created by Vadim Shalugin on 08.09.2024.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct MemoirView: View {
     @StateObject private var viewModel: MemoirViewModel
@@ -30,11 +30,10 @@ struct MemoirView: View {
                     })
 
                 TextEditor(text: $viewModel.currentText)
-                    .onChange(of: viewModel.currentText) { value in
+                    .onChange(of: viewModel.currentText) { _ in
                         viewModel.saveMemoir()
                     }
                     .padding(.horizontal, -4)
-                    .frame(minHeight: height > 0 ? height : 100)
                     .foregroundStyle(.primary)
                     .focused($isInputActive)
             }
@@ -45,7 +44,7 @@ struct MemoirView: View {
 
 struct MemoirViewPreviews: PreviewProvider {
     static var dataController = DataController()
-    @FocusState static private var isInputActive: Bool
+    @FocusState private static var isInputActive: Bool
 
     static var previews: some View {
         let viewContext = dataController.container.viewContext

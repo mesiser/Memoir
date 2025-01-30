@@ -26,51 +26,77 @@ struct LoadingScreenView: View {
                     memoirListView
                 } else {
                     ZStack {
-                        HStack {
+                        VStack(spacing: 0) {
                             Rectangle()
                                 .fill(.white)
-                                .frame(width: animationAmount, height: 100)
-                            Image("Pigeon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .padding(.leading, 20)
+                                .frame(height: 300)
+                            HStack {
+                                Rectangle()
+                                    .fill(.white)
+                                    .frame(width: animationAmount, height: 100)
+                                Image("pigeon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .padding(.leading, 90)
+                            }
                         }
-                        ZStack {
-                            Rectangle()
-                                .fill(.white)
-                                .frame(width: 100, height: 100)
-                                .border(Color("AccentColor"), width: 5)
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .scaleEffect(1.2, anchor: .center)
-                            .foregroundColor(Color("AccentColor"))
+                        VStack(spacing: 0) {
+                            Image("statue")
+                                .resizable()
+//                                .background(Color("BrownColor"))
+                                .scaledToFit()
+                                .frame(width: 500, height:300)
+                            ZStack {
+                                Rectangle()
+                                    .fill(.white)
+                                    .frame(width: 200, height: 100)
+                                    .border(.black, width: 1)
+                                    .cornerRadius(10)
+                                Text("Memento Mori")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                                    .italic()
+//                                ProgressView()
+//                                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
+//                                    .scaleEffect(1.2, anchor: .center)
+//                                    .foregroundColor(.white)
+                            }
                         }
 
 
                     }
                 }
             }.onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(1.0)) {
-                    withAnimation(.linear(duration: 0.5)) {
-                        animationAmount = 50
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(2.0)) {
-                    withAnimation(.linear(duration: 0.5)) {
-                        animationAmount = 0
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(3.0)) {
-                    self.gotoLoginScreen()
-                }
+                showPigeon()
+                hidePigeon()
+                gotoLoginScreen()
             }
 
         }
     }
     
+    func showPigeon() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(1.0)) {
+            withAnimation(.linear(duration: 0.8)) {
+                animationAmount = 80
+            }
+        }
+    }
+    
+    func hidePigeon() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(2.3)) {
+            withAnimation(.linear(duration: 0.8)) {
+                animationAmount = 0
+            }
+        }
+    }
+    
     func gotoLoginScreen() {
-        self.isActive = true
+         DispatchQueue.main.asyncAfter(deadline: .now() + Double(3.6)) {
+             self.isActive = true
+         }
     }
 }
 

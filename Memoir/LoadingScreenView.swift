@@ -26,8 +26,6 @@ struct LoadingScreenView: View {
                     memoirListView
                 } else {
                     ZStack {
-//                        Color("Background")
-//                            .ignoresSafeArea()
                         HStack {
                             Rectangle()
                                 .fill(.white)

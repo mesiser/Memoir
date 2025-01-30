@@ -42,7 +42,7 @@ struct MemoirView: View {
     }
 }
 
-struct MemoirViewPreviews: PreviewProvider {
+struct MemoirView_Previews: PreviewProvider {
     static var dataController = DataController()
     @FocusState private static var isInputActive: Bool
 

@@ -45,7 +45,7 @@ struct MemoirListView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MemoirListView_Previews: PreviewProvider {
     static var dataController = DataController()
 
     static var previews: some View {

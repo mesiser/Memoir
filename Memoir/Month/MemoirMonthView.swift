@@ -61,7 +61,7 @@ struct MemoirMonthView: View {
     }
 }
 
-struct MemoirMonthViewPreviews: PreviewProvider {
+struct MemoirMonthView_Previews: PreviewProvider {
     static var dataController = DataController()
     @FocusState private static var isInputActive: Bool
 

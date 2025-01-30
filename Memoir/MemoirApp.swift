@@ -14,8 +14,10 @@ struct MemoirApp: App {
     var body: some Scene {
         WindowGroup {
             let context = dataController.container.viewContext
-            MemoirListView(context: context)
+            LoadingScreenView(context: context)
                 .environment(\.managedObjectContext, context)
+//            MemoirListView(context: context)
+//                .environment(\.managedObjectContext, context)
         }
     }
 }
